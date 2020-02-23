@@ -1,0 +1,7 @@
+mixin logo-header
+    - var href = isIndex ? false : "index.html"
+    - var className = isIndex ? "text" : "link"
+    - var modName = isIndex ? "inactive" : "active"
+
+    +b.logo-header(class="--" + modName)
+      +e.A(class="__" + className, href=text) Pink

@@ -2,11 +2,44 @@ extends layouts/default
 include helpers/mixins
 
 block variables
-	- const title = "gulp-pug-starter"
-	- var isIndex = true
+  - const title = "gulp-pug-starter"
+  - var isIndex = true
+  - var isFooterMobileHidden = true
 
 block content
+  +b.SECTION.intro--index
+    +e.container
+      +e.title-wrap
+        +e.H1.title Взгляните на&nbsp;жизнь иначе!
+      +download
+  .box
+    .container
+      h2.title 
+        span Устали от&nbsp;серости мегаполиса?<br>
+        span Нам есть, что вам<br>предложить!
 
-block scripts
-	script(src="js/main.js")
-	script(src="js/vendor.js")
+  .box.box--dark
+    .container
+      +features
+
+  //- .box.box--blink
+  //-   .container
+  //-     +research
+
+  //- .box
+  //-   .container
+  //-     +reviews
+
+  //- .box.box--dark
+  //-   .container
+  //-     +tariffs
+
+  //- .box
+  //-   .container
+  //-     +contacts
+
+  //- .box.box--triangle
+  //-   +map
+
+block prepend scripts
+  script(src='http://api-maps.yandex.ru/2.1/?lang=ru_RU')

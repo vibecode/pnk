@@ -1,0 +1,46 @@
+mixin tariffs
+  +b.SECTION.tariffs
+    //- slider-block starts
+    +b.slider--tariffs
+      each item, index in siteData.tariffs.tariffsList
+        - var isChecked = false
+        if index == 0
+          - isChecked = "checked"
+        +e.INPUT.input(
+          id="tariff-" + index + 1,
+          type="radio",
+          name="tariffs",
+          checked=isChecked
+          )
+      +e.controls
+        each item, index in siteData.tariffs.tariffsList
+          +e.LABEL.control(for="tariff-" + index + 1)
+      +e.slides
+        +b.TABLE.tariffs-table
+          tr
+            +e.TH.row-name Услуги / Тарифы
+            //- tariff names
+            each item in siteData.tariffs.tariffsList
+              if item.isHit
+                +e.TH.title.--hit
+                  +e.SPAN.name=item.tariffName
+                  +e.SPAN.price=item.tariffPrice
+              else
+                +e.TH.title
+                  +e.SPAN.name=item.tariffName
+                  +e.SPAN.price=item.tariffPrice
+          //- rows
+          each item in siteData.tariffs.options
+            tr
+              +e.TD.option-name=item.optionName
+              each val in item.optionValues
+                +e.TD.option-value(data-option=item.optionName, data-tariff=val.tariffName)
+                  if val.isValue
+                    span Есть
+                    svg.svg-icon-yes
+                      use(xlink:href="img/svg-sprite.svg#icon-yes")
+                  else
+                    span Нет
+                    svg.svg-icon-no
+                      use(xlink:href="img/svg-sprite.svg#icon-no")
+

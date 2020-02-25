@@ -5,3 +5,13 @@ mixin logo-header
 
   +b.logo-header(class='--' + modName)
     +e.A(class='__' + className, href=text) Pink
+
+
+mixin logo-footer
+  - var href = isIndex ? false : "index.html"
+  - var className = isIndex ? "text" : "link"
+  - var modName = isIndex ? "inactive" : "active"
+
+  +b.logo--footer(class="--" + modName)
+    +e.A(class="__" + className, href=href) Pink
+      //- include ../../img/inline/logo-footer.svg

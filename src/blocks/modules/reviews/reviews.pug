@@ -1,0 +1,30 @@
+mixin review(item)
+  +b.BLOCKQUOTE.review
+    +e.P.text !{item.text}
+    +e.CITE.author !{item.author}
+    +e.SPAN.info !{item.info}
+
+mixin reviews
+  +b.SECTION.reviews
+    //slider
+    +b.slider--reviews
+      each item, index in siteData.reviews
+        - var isChecked = "checked"
+        if index > 0
+          - isChecked = false
+
+        +e.INPUT.input(
+          id="review-" + index + 1,
+          type='radio',
+          name='reviews',
+          checked=isChecked
+        )
+    +e.controls
+      each item, index in siteData.reviews
+        +e.LABEL.control(for="review-" + index + 1)
+    +e.arrows
+      +e.A.arrow--left(href='#')
+      +e.A.arrow--right(href='#')
+    +e.slides
+      each item, index in siteData.reviews
+        +review(item)

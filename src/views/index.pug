@@ -7,39 +7,41 @@ block variables
   - var isFooterMobileHidden = true
 
 block content
+  //intro
   +b.SECTION.intro--index
     +e.container
       +e.title-wrap
         +e.H1.title Взгляните на&nbsp;жизнь иначе!
       +download
+  //features title
   .box
     .container
       h2.title 
         span Устали от&nbsp;серости мегаполиса?<br>
         span Нам есть, что вам<br>предложить!
-
+  //features
   .box.box--dark
     .container
       +features
-
-  //- .box.box--blink
-  //-   .container
-  //-     +research
-
-  //- .box
-  //-   .container
-  //-     +reviews
-
-  //- .box.box--dark
-  //-   .container
-  //-     +tariffs
-
-  //- .box
-  //-   .container
-  //-     +contacts
-
-  //- .box.box--triangle
-  //-   +map
+  //research
+  .box.box--blink
+    .container
+      +research
+  //reviews
+  .box
+    .container
+      +reviews
+  //tariffs
+  .box.box--dark
+    .container
+      +tariffs
+  //contacts
+  .box
+    .container
+      +contacts
+  //map
+  .box.box--triangle
+    +map
 
 block prepend scripts
   script(src='http://api-maps.yandex.ru/2.1/?lang=ru_RU')

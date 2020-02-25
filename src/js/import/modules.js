@@ -1,1 +1,1 @@
-import "%modules%/footer/footer"
+// import "%modules%/footer/footer"

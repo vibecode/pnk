@@ -1,9 +1,17 @@
 include ../../blocks/bemto/bemto
-include ../../blocks/modules/page-header/page-header
+include ../../blocks/modules/header/header
 include ../../blocks/modules/logo/logo
 include ../../blocks/modules/nav/nav
 include ../../blocks/modules/download/download
 include ../../blocks/modules/features/features
+include ../../blocks/modules/research/research
+include ../../blocks/modules/reviews/reviews
+include ../../blocks/modules/tariffs/tariffs
+include ../../blocks/modules/contacts/contacts
+include ../../blocks/modules/map/map
+include ../../blocks/modules/socials/socials
+include ../../blocks/modules/copyright/copyright
+include ../../blocks/modules/footer/footer
 
 - set_bemto_settings({ modifier: "--" })
 
@@ -103,9 +111,11 @@ html(lang='ru')
     )
     link(rel='stylesheet', href='styles/main.css')
   body
-    +page-header
+    +header
     main.content
       block content
+    .container
+      +footer
 
     block scripts
       script(src='js/main.js')

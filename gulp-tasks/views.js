@@ -14,10 +14,8 @@ const argv = yargs.argv,
   production = !!argv.production
 
 gulp.task('views', () => {
-  var siteData = {}
+  let siteData = {}
   if (fs.existsSync(paths.data.src)) {
-    console.log('TWYTQYTWEYWETQWYETWYTEYWET')
-
     siteData = foldero(paths.data.src, {
       recurse: true,
       whitelist: '(.*/)*.+.(json)$',

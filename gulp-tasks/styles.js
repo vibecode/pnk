@@ -13,6 +13,8 @@ import plumber from 'gulp-plumber'
 import browsersync from 'browser-sync'
 import debug from 'gulp-debug'
 import yargs from 'yargs'
+import assets from 'postcss-assets'
+import postcss from 'gulp-postcss'
 
 const argv = yargs.argv,
   production = !!argv.production
@@ -23,6 +25,13 @@ gulp.task('styles', () => {
     .pipe(gulpif(!production, sourcemaps.init()))
     .pipe(plumber())
     .pipe(sass())
+    .pipe(
+      postcss([
+        assets({
+          loadPaths: ['src/img']
+        })
+      ])
+    )
     .pipe(groupmedia())
     .pipe(
       gulpif(

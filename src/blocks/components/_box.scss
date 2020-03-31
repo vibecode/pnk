@@ -1,0 +1,60 @@
+.box {
+  background-color: transparent;
+
+  &--dark {
+    background: $bg_grey inline('inline/bg-triangle-white.svg') left 50% top 0 /
+      100% 25px no-repeat;
+  }
+
+  &--triangle {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 33px;
+      background: inline('inline/bg-triangle-white-footer.svg') left 50% top 0 /
+        100% 33px no-repeat;
+      z-index: $z_decor;
+    }
+  }
+}
+
+// @media #{$mobile}
+// @media #{$tab-desk}
+@media #{$tablet} {
+  .box {
+    &--triangle {
+      &::before {
+        height: 72px;
+        background-size: 100% 72px;
+      }
+    }
+  }
+}
+
+@media #{$desktop} {
+  .box {
+    &--blink {
+      background-color: $bg_grey;
+    }
+
+    &--triangle {
+      &::before {
+        height: 100px;
+        background-size: 100% 100px;
+      }
+    }
+  }
+}
+
+@media #{$desk-xl} {
+  .box {
+    &--triangle {
+      &::before {
+        height: 130px;
+        background-size: 100% 130px;
+      }
+    }
+  }
+}

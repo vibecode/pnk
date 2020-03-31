@@ -1,0 +1,255 @@
+//vertical gutter
+$gutter_v: 22px;
+
+.nav {
+    @include container;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding-top: $gutter_v;
+    padding-bottom: $gutter_v;
+    background-color: $bg_base;
+    font-size: $fz_m;
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    &__item {
+        list-style: none;
+    }
+
+    &__link {
+        display: block;
+        transition: $trs_short;
+        color: $c_alt;
+        text-decoration: none;
+    }
+
+    //closed
+    &--closed {
+        position: fixed;
+        z-index: $z_header;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    &--closed &__list {
+        display: none;
+    }
+
+    /* ============================================>>>>>
+  = Icon 'Hamburger' =
+  ===============================================>>>>> */
+
+    &--closed &__icon-menu {
+        position: relative;
+        width: 50px;
+        height: 24px;
+        font-size: 0;
+        cursor: pointer;
+    }
+
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 4px;
+        transition: $trs_base;
+        background-color: $c_alt;
+    }
+
+    &::after {
+        top: 20px;
+        box-shadow: 0 -10px 0 0 $c_alt;
+    }
+
+    &:hover::before, &:hover::after {
+        background-color: $c_bright;
+    }
+
+    &:hover::after {
+        box-shadow: 0 -10px 0 0 $c_bright;
+    }
+
+    &:active::before, &:active::after {
+        background-color: rgba($c_bright, 0.3);
+    }
+
+    &:active::after {
+        box-shadow: 0 -10px 0 0 rgba($c_bright, 0.3);
+    }
+
+    /* --------------------------------------------<<<<<
+  = End of Icon 'Hamburger' =
+  ===============================================<<<<< */
+
+    //opened
+    &--opened {
+        position: fixed;
+        z-index: $z_header;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    &--opened &__list {
+        display: flex;
+    }
+
+    &--opened &__icon-menu {
+        position: relative;
+        width: 50px;
+        height: 24px;
+        font-size: 0;
+        cursor: pointer;
+
+        &::before, &::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            right: 10px;
+            width: 4px;
+            height: 30px;
+            transform: rotate(45deg);
+            transition: $trs_base;
+            background-color: $c_alt;
+        }
+
+        &:hover::before, &:hover::after {
+            background-color: $c_bright;
+        }
+
+        &:active::before, &:active::after {
+            background-color: rgba($c_bright, 0.3);
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+}
+
+@media #{$mobile} {
+    .nav {
+        &__item {
+            margin-left: -$offset_mobile;
+            margin-right: -$offset_mobile;
+        }
+        &__link {
+            padding-left: $offset_mobile;
+            padding-right: $offset_mobile;
+        }
+
+        &__list {
+            margin-top: 26px;
+        }
+    }
+}
+
+@media #{$portable} {
+    .nav {
+        padding-bottom: 0;
+        background-color: $bg_base;
+
+        &__item {
+            border-top: 1px solid #485461;
+            border-bottom: 1px solid #000;
+        }
+
+        &__item:first-child {
+            box-shadow: 0 -1px 0 0 #000;
+        }
+
+        &__link {
+            padding-top: $gutter_v;
+            padding-bottom: $gutter_v;
+            line-height: 1;
+            text-transform: uppercase;
+            font-weight: 700;
+            &:hover {
+                color: $c_bright;
+            }
+            &:active {
+                color: rgba($c_bright, 0.3);
+            }
+        }
+
+        &--closed {
+            padding-bottom: $gutter_v;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+@media #{$tablet} {
+    .nav {
+        &__item {
+            margin-left: -$offset_tablet;
+            margin-right: -$offset_tablet;
+        }
+        &__link {
+            padding-left: $offset_tablet;
+            padding-right: $offset_tablet;
+        }
+        &__list {
+            margin-top: $gutter_v;
+        }
+    }
+}
+
+@media #{$desktop} {
+    .nav {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        max-height: 200px;
+        overflow: hidden;
+        background-color: transparent;
+
+        &__list {
+            flex-wrap: wrap;
+            flex-basis: 54.5%;
+            flex-direction: row;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        &__item {
+            padding-left: $gutter;
+        }
+
+        &__link {
+            &:hover {
+                box-shadow: 0 2px 0 0 $c_alt;
+            }
+            &:active {
+                color: rgba($c_alt, 0.3);
+                box-shadow: none;
+            }
+        }
+
+        &__icon-menu {
+            display: none;
+        }
+
+        &--opened, &--closed {
+            position: static;
+            background-color: transparent;
+        }
+
+        &--closed &__list {
+            display: flex;
+        }
+    }
+}
